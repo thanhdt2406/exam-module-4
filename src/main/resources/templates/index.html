@@ -14,7 +14,11 @@
         <div class="col">
             <h1>City List</h1>
         </div>
-        <div class="col"></div>
+        <div class="col">
+            <th:block th:if="${param.success}">
+                <p>Successful!</p>
+            </th:block>
+        </div>
         <div class="col">
             <a href="/create"><button type="button" class="btn btn-secondary">Add new country</button></a>
         </div>
@@ -35,7 +39,7 @@
                         <td>
                             <a th:href="@{/detail/__${city.getId()}__}" th:text="${city.getName()}"></a>
                         </td>
-                        <td th:text="${city.getCountry()}"></td>
+                        <td th:text="${city.getCountry().getName()}"></td>
                         <td>
                             <a th:href="@{/edit/__${city.getId()}__}">Edit</a>
                             <span> | </span>

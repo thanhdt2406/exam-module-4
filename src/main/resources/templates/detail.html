@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col">
                 <p th:text="'Name: ' + ${city.getName()}"></p>
-                <p th:text="'Country: ' + ${city.getCountry()}"></p>
+                <p th:text="'Country: ' + ${city.getCountry().getName()}"></p>
                 <p th:text="'Acreage: ' + ${city.getAcreage()}"></p>
                 <p th:text="'Population: ' + ${city.getPopulation()}"></p>
                 <p th:text="'GDP: ' + ${city.getGdp()}"></p>

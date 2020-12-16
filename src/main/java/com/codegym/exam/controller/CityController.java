@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 
 @Controller
 public class CityController {
@@ -24,8 +25,8 @@ public class CityController {
     private ICountryService countryService;
 
     @ModelAttribute("countries")
-    public Iterable<Country> getAllCountry(){
-        return countryService.findAll();
+    public ArrayList<Country> getAllCountry(){
+        return (ArrayList<Country>) countryService.findAll();
     }
 
     @GetMapping
@@ -49,7 +50,7 @@ public class CityController {
             return new ModelAndView("create","city",city);
         }
         cityService.save(city);
-        return new ModelAndView("redirect:/");
+        return new ModelAndView("redirect:/?success");
     }
 
     @GetMapping("edit/{id}")
@@ -58,9 +59,12 @@ public class CityController {
     }
 
     @PostMapping("edit/{id}")
-    public ModelAndView getEdit(@ModelAttribute("city") City city){
+    public ModelAndView getEdit(@Valid @ModelAttribute("city") City city, BindingResult bindingResult){
+        if (bindingResult.hasFieldErrors()){
+            return new ModelAndView("edit","city",city);
+        }
         cityService.save(city);
-        return new ModelAndView("redirect:/");
+        return new ModelAndView("redirect:/?success");
     }
 
     @GetMapping("delete/{id}")
@@ -71,6 +75,6 @@ public class CityController {
     @GetMapping("delete/{id}/confirm")
     public ModelAndView getDelete(@PathVariable("id") Long id){
         cityService.delete(id);
-        return new ModelAndView("redirect:/");
+        return new ModelAndView("redirect:/?success");
     }
 }

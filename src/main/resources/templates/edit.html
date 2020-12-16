@@ -24,20 +24,7 @@
             <label for="inputCountry" class="col-sm-2 col-form-label">Country: </label>
             <div class="col-sm-10">
                 <select id="inputCountry" name="country">
-                    <option th:if="${city.getCountry()=='USA'}" value="USA" selected>USA</option>
-                    <option th:if="${city.getCountry()=='China'}" value="China" selected>China</option>
-                    <option th:if="${city.getCountry()=='VietNam'}" value="VietNam" selected>VietNam</option>
-                    <option th:if="${city.getCountry()=='Japan'}" value="Japan" selected>Japan</option>
-                    <option th:if="${city.getCountry()=='Korea'}" value="Korea" selected>Korea</option>
-                    <option th:if="${city.getCountry()=='England'}" value="England" selected>England</option>
-                    <option th:if="${city.getCountry()=='ThaiLand'}" value="ThaiLand" selected>ThaiLand</option>
-                    <option value="USA" >USA</option>
-                    <option value="China">China</option>
-                    <option value="VietNam">VietNam</option>
-                    <option value="Japan">Japan</option>
-                    <option value="Korea">Korea</option>
-                    <option value="England">England</option>
-                    <option value="ThaiLand">ThaiLand</option>
+                    <option th:each="country:${countries}" th:value="${country.id}" th:text="${country.name}" th:selected="${country==city.getCountry()}"></option>
                 </select>
             </div>
         </div>
@@ -65,12 +52,12 @@
         <div class="row mb-3">
             <label for="inputDescription" class="col-sm-2 col-form-label">Description: </label>
             <div class="col-sm-10">
-                <textarea class="form-control" id="inputDescription" name="description" rows="5"></textarea>
+                <textarea class="form-control" id="inputDescription" name="description" th:text="${city.getDescription()}" rows="5"></textarea>
             </div>
         </div>
         <button type="submit" class="btn btn-secondary">Save</button>
-        <a href="/"><button class="btn btn-secondary">Cancel</button></a>
     </form>
+    <a href="/"><button class="btn btn-secondary">Cancel</button></a>
 </div>
 </body>
 </html>
