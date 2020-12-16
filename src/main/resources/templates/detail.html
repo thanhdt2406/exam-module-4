@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 th:text="${city.getName()} + ' City'"></h1>
+        </div>
+        <div class="col"></div>
+        <div class="col">
+            <a href="/"><button type="button" class="btn btn-secondary">City List</button></a>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p th:text="'Name: ' + ${city.getName()}"></p>
+                <p th:text="'Country: ' + ${city.getCountry()}"></p>
+                <p th:text="'Acreage: ' + ${city.getAcreage()}"></p>
+                <p th:text="'Population: ' + ${city.getPopulation()}"></p>
+                <p th:text="'GDP: ' + ${city.getGdp()}"></p>
+                <p th:text="'Description: ' + ${city.getDescription()}"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col">
+                <a th:href="@{/edit/__${city.getId()}__}"><button type="button" class="btn btn-secondary">Edit</button></a>
+                <a th:href="@{/delete/__${city.getId()}__}"><button type="button" class="btn btn-secondary">Delete</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
